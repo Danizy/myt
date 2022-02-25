@@ -1,8 +1,8 @@
 import { Button, Container, Paper, Typography } from '@mui/material';
 import { Box } from '@mui/system';
+import PATHS from 'navigation/paths';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import PATHS from '../../navigation/paths';
 
 const HomePage = () => {
   return (
