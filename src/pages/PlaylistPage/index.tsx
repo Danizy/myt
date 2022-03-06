@@ -13,7 +13,9 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const PlaylistPage = () => {
-  const [playlistId, setPlaylistId] = useState<string>('');
+  const [playlistId, setPlaylistId] = useState<string>(
+    'https://www.youtube.com/playlist?list=PLuwBoM-vCdozd068RNBwZqYAlN0rsf4wY'
+  );
 
   const { playlist, fetchPlaylist } = usePlaylists();
 
