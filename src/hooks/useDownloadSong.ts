@@ -1,36 +1,31 @@
-import { useState } from 'react';
+import { useState } from 'react'
 
 const useDownloadSong = () => {
-  const [bytesFetched, setBytesFetched] = useState<number | undefined>();
-  const [totalBytes, setTotalBytes] = useState<number | undefined>();
-  const [isFinished, setIsFinished] = useState(false);
-  console.log(isFinished);
+  const [bytesFetched, setBytesFetched] = useState<number | undefined>()
+  const [totalBytes, setTotalBytes] = useState<number | undefined>()
+  const [isFinished, setIsFinished] = useState(false)
+  const [convertProgress, setConvertProgress] = useState<number | undefined>()
 
   const downloadSong = (songUrl: string, songName: string) => {
-    const ytdlDownload = window.downloadSong;
+    const ytdlDownload = window.downloadSong
 
-    //@ts-ignore
-    ytdlDownload(
-      songUrl,
-      `${songName}.mp4`,
-      //@ts-ignore
-      'progress',
-      //@ts-ignore
-      (a, b, c) => {
-        console.log(a, b, c);
-        setBytesFetched(b);
-        setTotalBytes(c);
+    ytdlDownload(songUrl, `${songName}.mp4`, {
+      onFinish: () => setIsFinished(true),
+      onDownloadProgress: (a, b, c) => {
+        setBytesFetched(b)
+        setTotalBytes(c)
       },
-      () => setIsFinished(true)
-    );
-  };
+      onConvertProgress: (conversionProgress) =>
+        setConvertProgress(conversionProgress),
+    })
+  }
 
   const percentageFetched =
     bytesFetched === undefined || totalBytes === undefined
       ? undefined
-      : (bytesFetched * 100) / totalBytes;
+      : (bytesFetched * 100) / totalBytes
 
-  return { downloadSong, percentageFetched, isFinished };
-};
+  return { downloadSong, percentageFetched, isFinished, convertProgress }
+}
 
-export default useDownloadSong;
+export default useDownloadSong

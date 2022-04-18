@@ -1,24 +1,24 @@
-import { useState } from 'react';
-import ytpl from 'ytpl';
+import { useState } from 'react'
+import ytpl from 'ytpl'
 
 const usePlaylists = () => {
-  const [playlist, setPlaylist] = useState<ytpl.Result | undefined>();
+  const [playlist, setPlaylist] = useState<ytpl.Result | undefined>()
 
   const fetchPlaylist = async (playlistIdentifier: string) => {
     try {
-      const ytpl = window.ytpl;
-      const playlist = await ytpl(playlistIdentifier, { limit: 20 });
+      const ytpl = window.ytpl
+      const playlist = await ytpl(playlistIdentifier, { limit: 25 })
 
-      setPlaylist(playlist);
+      setPlaylist(playlist)
     } catch (error) {
-      console.error(error);
+      console.error(error)
     }
-  };
+  }
 
   return {
     playlist,
     fetchPlaylist,
-  };
-};
+  }
+}
 
-export default usePlaylists;
+export default usePlaylists
