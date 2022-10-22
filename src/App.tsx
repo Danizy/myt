@@ -1,8 +1,7 @@
-import React from 'react';
-import './App.css';
-import { HashRouter } from 'react-router-dom';
-import Navigation from './navigation';
-import Theme from './components/Theme';
+import './App.css'
+import { HashRouter } from 'react-router-dom'
+import Navigation from './navigation'
+import Theme from './components/Theme'
 
 const App = () => {
   return (
@@ -11,7 +10,7 @@ const App = () => {
         <Navigation />
       </HashRouter>
     </Theme>
-  );
-};
+  )
+}
 
-export default App;
+export default App

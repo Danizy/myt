@@ -9,6 +9,8 @@ const usePlaylists = () => {
     try {
       setIsLoading(true)
 
+      console.log(window.ytpl)
+
       const ytpl = window.ytpl
       const playlist = await ytpl(playlistIdentifier, { limit: 800 })
 

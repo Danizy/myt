@@ -1,6 +1,4 @@
-import { Box, Button, LinearProgress, Paper, Typography } from '@mui/material'
 import useDownloadSong from 'hooks/useDownloadSong'
-import React from 'react'
 import ytpl from 'ytpl'
 
 export interface SongListElementProps {
@@ -14,18 +12,16 @@ const SongListElement = ({ song }: SongListElementProps) => {
   const onClick = () => downloadSong(song.url, song.title)
 
   return (
-    <Paper sx={{ mb: 2, display: 'flex' }}>
+    <div>
       {!!song.bestThumbnail.url && (
         <img src={song.bestThumbnail.url} alt="thumbnail" width={200} />
       )}
-      <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
-        <Box sx={{ m: 2, width: '100%' }}>
-          <Typography>{song.title}</Typography>
-          <Button {...{ onClick }} variant="contained">
-            Download
-          </Button>
-        </Box>
-        {percentageFetched !== undefined && (
+      <div>
+        <div>
+          <span>{song.title}</span>
+          <button {...{ onClick }}>Download</button>
+        </div>
+        {/* {percentageFetched !== undefined && (
           <LinearProgress variant="determinate" value={percentageFetched} />
         )}
         {convertProgress !== undefined && (
@@ -34,10 +30,10 @@ const SongListElement = ({ song }: SongListElementProps) => {
             color="secondary"
             value={convertProgress}
           />
-        )}
-        {isFinished && <Typography>Done</Typography>}
-      </Box>
-    </Paper>
+        )} */}
+        {isFinished && <span>Done</span>}
+      </div>
+    </div>
   )
 }
 

@@ -1,14 +1,7 @@
-import { createTheme, ThemeProvider } from '@mui/material';
-import React from 'react';
+import React, { PropsWithChildren } from 'react'
 
-const Theme: React.FC = ({ children }) => {
-  const theme = createTheme({
-    palette: {
-      mode: 'dark',
-    },
-  });
+const Theme: React.FC<PropsWithChildren> = ({ children }) => {
+  return <>{children}</>
+}
 
-  return <ThemeProvider {...{ theme }}>{children}</ThemeProvider>;
-};
-
-export default Theme;
+export default Theme
