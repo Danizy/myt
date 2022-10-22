@@ -19,7 +19,7 @@ const SongListElement = ({ song }: SongListElementProps) => {
         <img src={song.bestThumbnail.url} alt="thumbnail" width={200} />
       )}
       <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
-        <Box sx={{ p: 2, width: '100%' }}>
+        <Box sx={{ m: 2, width: '100%' }}>
           <Typography>{song.title}</Typography>
           <Button {...{ onClick }} variant="contained">
             Download

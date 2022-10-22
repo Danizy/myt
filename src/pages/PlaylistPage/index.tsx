@@ -1,34 +1,28 @@
-import {
-  Button,
-  Container,
-  Paper,
-  Stack,
-  TextField,
-  Typography,
-} from '@mui/material';
-import SongListElement from 'components/SongListElement';
-import usePlaylists from 'hooks/usePlaylists';
-import PATHS from 'navigation/paths';
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Button, Container, Stack, TextField, Typography } from '@mui/material'
+import SongListElement from 'components/SongListElement'
+import usePlaylists from 'hooks/usePlaylists'
+import PATHS from 'navigation/paths'
+import Appear from 'components/utils/Appear'
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const PlaylistPage = () => {
   const [playlistId, setPlaylistId] = useState<string>(
     'https://www.youtube.com/playlist?list=PLuwBoM-vCdozd068RNBwZqYAlN0rsf4wY'
-  );
+  )
 
-  const { playlist, fetchPlaylist } = usePlaylists();
+  const { playlist, fetchPlaylist } = usePlaylists()
 
   const onFetchPlaylistClick = () => {
-    if (!playlistId) return;
+    if (!playlistId) return
 
-    fetchPlaylist(playlistId);
-  };
+    fetchPlaylist(playlistId)
+  }
 
-  console.log(playlist);
+  console.log(playlist)
 
   return (
-    <div>
+    <Appear>
       <Button component={Link} to={PATHS.home} variant="contained">
         Go back
       </Button>
@@ -54,17 +48,17 @@ const PlaylistPage = () => {
       {playlist !== undefined && (
         <Container sx={{ mt: 5 }}>
           <Stack>
-            <Paper sx={{ mb: 5 }}>
-              <Typography variant="h3">{playlist.title}</Typography>
-            </Paper>
+            <Container sx={{ mb: 2 }}>
+              <Typography variant="h4">{playlist.title}</Typography>
+            </Container>
             {playlist.items.map((song) => (
               <SongListElement {...{ song }} key={song.id} />
             ))}
           </Stack>
         </Container>
       )}
-    </div>
-  );
-};
+    </Appear>
+  )
+}
 
-export default PlaylistPage;
+export default PlaylistPage
