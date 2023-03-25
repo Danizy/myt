@@ -1,9 +1,8 @@
-import { Button, Container, Stack, TextField, Typography } from '@mui/material'
 import SongListElement from 'components/SongListElement'
 import usePlaylists from 'hooks/usePlaylists'
 import PATHS from 'navigation/paths'
 import Appear from 'components/utils/Appear'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 const PlaylistPage = () => {
@@ -23,39 +22,26 @@ const PlaylistPage = () => {
 
   return (
     <Appear>
-      <Button component={Link} to={PATHS.home} variant="contained">
-        Go back
-      </Button>
-      <Container
-        maxWidth="xs"
-        sx={{ alignItems: 'center', justifyContent: 'center', display: 'flex' }}
-      >
-        <TextField
-          variant="filled"
-          label="playlist id"
-          fullWidth
+      <Link to={PATHS.home}>Go back</Link>
+      <div className="align-middle justify-center flex">
+        <input
+          className="text-black"
           value={playlistId}
           onChange={(e) => setPlaylistId(e.target.value)}
         />
-        <Button
-          sx={{ marginLeft: 3 }}
-          variant="contained"
-          onClick={onFetchPlaylistClick}
-        >
-          Load
-        </Button>
-      </Container>
+        <button onClick={onFetchPlaylistClick}>Load</button>
+      </div>
       {playlist !== undefined && (
-        <Container sx={{ mt: 5 }}>
-          <Stack>
-            <Container sx={{ mb: 2 }}>
-              <Typography variant="h4">{playlist.title}</Typography>
-            </Container>
+        <div className="mt-5 px-8 max-w-5xl justify-center w-full mx-auto flex">
+          <div>
+            <div className="mb-5">
+              <h2 className="text-4xl">{playlist.title}</h2>
+            </div>
             {playlist.items.map((song) => (
               <SongListElement {...{ song }} key={song.id} />
             ))}
-          </Stack>
-        </Container>
+          </div>
+        </div>
       )}
     </Appear>
   )

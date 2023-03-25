@@ -1,6 +1,4 @@
-import { Box, Button, LinearProgress, Paper, Typography } from '@mui/material'
 import useDownloadSong from 'hooks/useDownloadSong'
-import React from 'react'
 import ytpl from 'ytpl'
 
 export interface SongListElementProps {
@@ -14,30 +12,34 @@ const SongListElement = ({ song }: SongListElementProps) => {
   const onClick = () => downloadSong(song.url, song.title)
 
   return (
-    <Paper sx={{ mb: 2, display: 'flex' }}>
+    <div className="flex bg-slate-800 mb-5 pr-3">
       {!!song.bestThumbnail.url && (
-        <img src={song.bestThumbnail.url} alt="thumbnail" width={200} />
+        <img
+          src={song.bestThumbnail.url}
+          alt="thumbnail"
+          className="object-cover mr-5"
+          width={200}
+        />
       )}
-      <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
-        <Box sx={{ m: 2, width: '100%' }}>
-          <Typography>{song.title}</Typography>
-          <Button {...{ onClick }} variant="contained">
+      <div className="flex flex-col w-full py-3">
+        <div className="w-full">
+          <h2>{song.title}</h2>
+          <button
+            {...{ onClick }}
+            className="bg-blue-500 rounded-md p-2 hover:bg-blue-400"
+          >
             Download
-          </Button>
-        </Box>
+          </button>
+        </div>
         {percentageFetched !== undefined && (
-          <LinearProgress variant="determinate" value={percentageFetched} />
+          <span>Downloaded: {percentageFetched.toFixed(0)}%</span>
         )}
         {convertProgress !== undefined && (
-          <LinearProgress
-            variant="determinate"
-            color="secondary"
-            value={convertProgress}
-          />
+          <span>Converted: {convertProgress.toFixed(0)}%</span>
         )}
-        {isFinished && <Typography>Done</Typography>}
-      </Box>
-    </Paper>
+        {isFinished && <span>Done</span>}
+      </div>
+    </div>
   )
 }
 
