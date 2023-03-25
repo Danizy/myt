@@ -2,6 +2,7 @@ import { useState } from 'react'
 import ytpl from 'ytpl'
 
 const usePlaylists = () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isLoading, setIsLoading] = useState(false)
   const [playlist, setPlaylist] = useState<ytpl.Result | undefined>()
 
